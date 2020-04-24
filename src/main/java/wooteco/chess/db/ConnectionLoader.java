@@ -13,17 +13,19 @@ public class ConnectionLoader {
 	private static final String OPTION = "?useSSL=false&serverTimezone=UTC";
 	private static final String NAME = "root";
 	private static final String PASSWORD = "ans230";
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 
-	public Connection load() {
+	public static Connection load() throws ClassNotFoundException, SQLException {
 		Connection con = null;
 		try {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection("jdbc:mysql://" + SERVER + "/" + DB_NAME + OPTION, NAME, PASSWORD);
 		} catch (ClassNotFoundException e) {
 			System.err.println(" !! JDBC Driver load 오류: " + e.getMessage());
+			throw new ClassNotFoundException("데이터베이스에 연결할 수 없습니다.");
 		} catch (SQLException e) {
 			System.err.println("연결 오류:" + e.getMessage());
+			throw new SQLException("데이터베이스에 연결할 수 없습니다.");
 		}
 		return con;
 	}
