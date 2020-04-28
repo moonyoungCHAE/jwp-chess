@@ -23,7 +23,6 @@ public class BoardFactory {
 	}
 
 	public static List<BoardDto> createMappers(Board board) {
-		List<Object> pieces = new ArrayList<>();
 		return board.getBoard().entrySet()
 			.stream()
 			.map(entry -> {
