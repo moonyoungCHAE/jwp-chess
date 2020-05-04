@@ -23,6 +23,7 @@ public class BoardMapper {
 		return new Board(board);
 	}
 
+	// test
 	public static List<BoardEntity> createMappers(Board board) {
 		return board.getBoard().entrySet()
 			.stream()
